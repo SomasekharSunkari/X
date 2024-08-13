@@ -2,6 +2,8 @@
 import express from "express";
 import authRoutes from "./routes/auth.js"
 import userRoutes from "./routes/users.js"
+import postRoutes from "./routes/posts.js"
+import notificationRoutes from "./routes/notifications.js"
 import dotenv from "dotenv"
 import {v2 as cloudinary} from "cloudinary";
 import { connect } from "./db/connectToMongo.js";
@@ -19,6 +21,8 @@ const PORT = process.env.PORT || 5000;
 dotenv.config()
 app.use("/api/auth",authRoutes);
 app.use("/api/user",userRoutes)
+app.use("/api/posts",postRoutes)
+app.use("/api/notifications",notificationRoutes);
 app.get("/",(req,res)=>{
     res.send("Server is ready noe")
 })
