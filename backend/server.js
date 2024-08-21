@@ -8,8 +8,14 @@ import dotenv from "dotenv"
 import {v2 as cloudinary} from "cloudinary";
 import { connect } from "./db/connectToMongo.js";
 import cookieParser from "cookie-parser";
+import cors from 'cors';
 const app = express();
 app.use(express.json())
+app.use(cors({
+    origin: 'http://localhost:3000', // your frontend URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true // if you need to send cookies or authentication headers
+  }));
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
